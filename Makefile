@@ -52,36 +52,25 @@ OGG_LIB:=$(OGG)/src/lib/libogg.a
 all: release_libs min_libs dev_libs
 
 # release builds
-release_libs: $(FLAC_LIB) dist/libflac.js dist/libflac.wasm.js
+release_libs: $(FLAC_LIB) dist/libflac.js
 
 ## asm.js release build
 dist/libflac.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
 	$(EMCC) $(EMCC_DEF_OPT_LEVEL) $(EMCC_OPTS_ASMJS_DEFAULT) --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
-## wasm release build
-dist/libflac.wasm.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
-	$(EMCC) $(EMCC_DEF_OPT_LEVEL) $(EMCC_OPTS_WASM_DEFAULT) --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
-
 
 # min builds
-min_libs: $(FLAC_LIB) dist/libflac.min.js dist/libflac.min.wasm.js
+min_libs: $(FLAC_LIB) dist/libflac.min.js
 
 ## asm.js min build
 dist/libflac.min.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
 	$(EMCC) $(EMCC_MIN_OPT_LEVEL) $(EMCC_OPTS_ASMJS_DEFAULT) --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
-## wasm min build
-dist/libflac.min.wasm.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
-	$(EMCC) $(EMCC_MIN_OPT_LEVEL) $(EMCC_OPTS_WASM_DEFAULT) --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
-
 
 # dev builds
-dev_libs: $(FLAC_LIB) dist/libflac.dev.js dist/libflac.dev.wasm.js
+dev_libs: $(FLAC_LIB) dist/libflac.dev.js
 
 ## asm.js dev build
 dist/libflac.dev.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
 	$(EMCC) $(EMCC_MAX_OPT_LEVEL_ASMJS) $(EMCC_OPTS_ASMJS_DEFAULT) -s ASSERTIONS=1 --source-map-base ./ --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
-## wasm dev build
-dist/libflac.dev.wasm.js: $(FLAC_LIB) $(PREFILE) $(POSTFILE)
-	$(EMCC) $(EMCC_MAX_OPT_LEVEL_WASM) $(EMCC_OPTS_WASM_DEFAULT) -s ASSERTIONS=1 --source-map-base ./ --pre-js $(PREFILE) --post-js $(POSTFILE) $(FLAC_LIB) -o $@
 
 
 $(OGG).tar.xz:
