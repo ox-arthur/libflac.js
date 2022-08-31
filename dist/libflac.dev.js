@@ -13,36 +13,37 @@
 // after the generated code, you will need to define   var Module = {};
 // before the code. Then that object will be used in the code, and you
 // can continue to use Module afterwards as well.
-var Module = typeof Module !== 'undefined' ? Module : {};
+// var Module = typeof Module !== 'undefined' ? Module : {};
 
 
 
-// --pre-jses are emitted after the Module integration code, so that they can
-// refer to Module (if they choose; they can also define Module)
-// libflac.js - port of libflac to JavaScript using emscripten
+// // --pre-jses are emitted after the Module integration code, so that they can
+// // refer to Module (if they choose; they can also define Module)
+// // libflac.js - port of libflac to JavaScript using emscripten
 
 
-(function (root, factory) {
+// (function (root, factory) {
 
-	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
-		define(['module', 'require'], factory.bind(null, root));
-	} else if (typeof module === 'object' && module.exports) {
-		// Node. Does not work with strict CommonJS, but
-		// only CommonJS-like environments that support module.exports,
-		// like Node.
+// 	if (typeof define === 'function' && define.amd) {
+// 		// AMD. Register as an anonymous module.
+// 		define(['module', 'require'], factory.bind(null, root));
+// 	} else if (typeof module === 'object' && module.exports) {
+// 		// Node. Does not work with strict CommonJS, but
+// 		// only CommonJS-like environments that support module.exports,
+// 		// like Node.
 
-		// use process.env (if available) for reading Flac environment settings:
-		var env = typeof process !== 'undefined' && process && process.env? process.env : root;
-		factory(env, module, module.require);
-	} else {
-		// Browser globals
-		root.Flac = factory(root);
-	}
+// 		// use process.env (if available) for reading Flac environment settings:
+// 		var env = typeof process !== 'undefined' && process && process.env? process.env : root;
+// 		factory(env, module, module.require);
+// 	} else {
+// 		// Browser globals
+// 		root.Flac = factory(root);
+// 	}
 
-}(typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : this, function (global, expLib, require) {
-'use strict';
-
+// }(typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : this, function (global, expLib, require) {
+// 'use strict';
+const Flac = (function() {
+var global = {};
 var Module = Module || {};
 var _flac_ready = false;
 //in case resources are loaded asynchronously (e.g. *.mem file for minified version): setup "ready" handling
@@ -56465,10 +56466,15 @@ if(typeof Object.defineProperty === 'function'){
 	console.warn('WARN: note that setting Flac.onready handler after Flac.isReady() is already true, will have no effect, that is, the handler function will not be triggered!');
 }
 
-if(expLib && expLib.exports){
-	expLib.exports = _exported;
-}
+// if(expLib && expLib.exports){
+// 	expLib.exports = _exported;
+// }
 return _exported;
 
-}));//END: UMD wrapper
+// }));//END: UMD wrapper
+})();//END: UMD wrapper
 
+// console.log(Flac);
+
+// module.exports = { Flac };
+export default Flac;

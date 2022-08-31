@@ -1,1 +1,1 @@
-export * from './index.d';
+export * as default from './index.d';
