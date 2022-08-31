@@ -4,7 +4,7 @@
     "allowJs": false,
     "target": "es2018",
     "declaration": false,
-    "module": "commonjs",
+    "module": "esnext",
     "strict": true,
     "strictPropertyInitialization": false
   }
