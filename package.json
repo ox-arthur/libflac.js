@@ -4,6 +4,9 @@
   "main": "dist/libflac.js",
   "types": "dist/index.d.ts",
   "description": "FLAC data stream encoder and decoder compiled in JavaScript using emscripten.",
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
   "directories": {
     "doc": "doc",
     "bin": "dist",

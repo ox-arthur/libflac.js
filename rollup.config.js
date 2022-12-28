@@ -5,7 +5,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
 	input: "src/worklet.ts",
 	output: {
-		file: "dist/encoder.bundled.js",
+		file: "dist/libflac.worklet.js",
 		name: "RollupAudioWorklet",
 		format: "es",
 	},
